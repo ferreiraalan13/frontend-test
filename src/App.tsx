@@ -1,14 +1,21 @@
-import { Button } from "./components/ui/button";
+import { SymbolList } from "./components/SymbolList";
+import { WatchList } from "./components/WatchList";
+import { SymbolProvider } from "./context/SymbolContext";
 
 function App() {
   return (
-    <div>
-      <div className="flex min-h-svh flex-col items-center justify-center ">
-        <Button className="bg-amber-200">
-          Configuração inicial do projeto
-        </Button>
+    <SymbolProvider>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        <div>
+          <h2 className="text-xl font-bold mb-2">Símbolos disponíveis</h2>
+          <SymbolList />
+        </div>
+        <div>
+          <h2 className="text-xl font-bold mb-2">Minha Watchlist</h2>
+          <WatchList />
+        </div>
       </div>
-    </div>
+    </SymbolProvider>
   );
 }
 
