@@ -21,7 +21,9 @@ export default function Watchlist() {
 
   if (selectedSymbols.length === 0) {
     return (
-      <p className="text-center text-gray-500">Nenhum símbolo selecionado.</p>
+      <p className="text-center text-gray-500">
+        Add symbols to your list to see more details
+      </p>
     );
   }
 

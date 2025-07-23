@@ -41,14 +41,14 @@ export const SymbolList = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="mb-3 w-[90%] p-2"
-          placeholder="Buscar simbolo..."
+          placeholder="Search..."
         />
         <Button
           className="px-4 py-2 bg-green-600 text-white cursor-pointer disabled:opacity-50 w-[90%]"
           onClick={handleAddSelected}
           disabled={selected.length === 0}
         >
-          <FiPlus /> Adicionar selecionados à WatchList
+          <FiPlus /> Add to WatchList
         </Button>
       </div>
 
@@ -56,7 +56,7 @@ export const SymbolList = () => {
         {filteredSymbols.map((s) => (
           <div
             key={s.symbol}
-            className="flex items-center justify-between p-2 border rounded shadow-sm"
+            className="flex items-center justify-between p-2 bg-[#3d3d3d] rounded shadow-sm"
           >
             <div className="flex items-center">
               <input
