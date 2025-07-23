@@ -10,6 +10,7 @@ import {
   TableBody,
   TableCell,
 } from "./ui/table";
+import { Badge } from "./ui/badge";
 
 export default function Watchlist() {
   const { selectedSymbols, removeSymbol } = useSymbolContext();
@@ -47,9 +48,20 @@ export default function Watchlist() {
             <TableCell className="font-semibold">{item.bidPrice}</TableCell>
             <TableCell className="font-semibold">{item.askPrice}</TableCell>
             <TableCell className="font-semibold">
-              {item.priceChange && !isNaN(parseFloat(item.priceChange))
-                ? `${parseFloat(item.priceChange).toFixed(2)}%`
-                : "--"}
+              <Badge
+                className={
+                  item.priceChange && !isNaN(parseFloat(item.priceChange))
+                    ? parseFloat(item.priceChange) < 0
+                      ? "bg-red-300 text-black"
+                      : "bg-green-400  text-black"
+                    : "bg-gray-400"
+                }
+                variant="outline"
+              >
+                {item.priceChange && !isNaN(parseFloat(item.priceChange))
+                  ? `${parseFloat(item.priceChange).toFixed(2)}%`
+                  : "--"}
+              </Badge>
             </TableCell>
             <TableCell className="font-semibold">
               <span
