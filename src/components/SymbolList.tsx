@@ -2,6 +2,9 @@ import { useSymbolContext } from "@/context/SymbolContext";
 import { getSymbols } from "@/services/binanceApi";
 import type { ISymbol } from "@/services/types";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import { FiPlus } from "react-icons/fi";
+import { Input } from "./ui/input";
 
 export const SymbolList = () => {
   const [symbols, setSymbols] = useState<ISymbol[]>([]);
@@ -32,20 +35,23 @@ export const SymbolList = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Buscar símbolo..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mb-3 w-full p-2 border rounded"
-      />
-      <button
-        onClick={handleAddSelected}
-        disabled={selected.length === 0}
-        className="mb-3 ml-2 px-4 py-2 bg-green-600 text-white rounded disabled:opacity-50"
-      >
-        Adicionar selecionados
-      </button>
+      <div className="flex flex-col mb-4 justify-center ml-2">
+        <Input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="mb-3 w-[90%] p-2"
+          placeholder="Buscar simbolo..."
+        />
+        <Button
+          className="px-4 py-2 bg-green-600 text-white cursor-pointer disabled:opacity-50 w-[90%]"
+          onClick={handleAddSelected}
+          disabled={selected.length === 0}
+        >
+          <FiPlus /> Adicionar selecionados à WatchList
+        </Button>
+      </div>
+
       <div className="space-y-2 max-h-[500px] overflow-auto">
         {filteredSymbols.map((s) => (
           <div
