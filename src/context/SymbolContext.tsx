@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 interface SymbolContextType {
@@ -10,7 +10,18 @@ interface SymbolContextType {
 const SymbolContext = createContext<SymbolContextType | null>(null);
 
 export const SymbolProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedSymbols, setSelectedSymbols] = useState<string[]>([]);
+  const [selectedSymbols, setSelectedSymbols] = useState<string[]>(() => {
+    // Inicializa do localStorage, se existir
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("selectedSymbols");
+      return stored ? JSON.parse(stored) : [];
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selectedSymbols", JSON.stringify(selectedSymbols));
+  }, [selectedSymbols]);
 
   const addSymbols = (symbols: string[]) => {
     setSelectedSymbols((prev) => {

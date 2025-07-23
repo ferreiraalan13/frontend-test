@@ -56,9 +56,9 @@ export const SymbolList = () => {
         {filteredSymbols.map((s) => (
           <div
             key={s.symbol}
-            className="flex items-center justify-between p-2 bg-[#3d3d3d] rounded shadow-sm"
+            className="flex items-center justify-between p-2 bg-[#3d3d3d] rounded shadow-sm mr-2"
           >
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <input
                 type="checkbox"
                 checked={selected.includes(s.symbol)}
